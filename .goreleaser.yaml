@@ -1,6 +1,7 @@
 env:
   - CI=false
   - GENERATE_SOURCEMAP=false
+  - GITHUB_TOKEN=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
 before:
   hooks:
     - go mod tidy

@@ -18,9 +18,7 @@ builds:
       - -X 'github.com/Transwarpcom/Cloudreve/v3/pkg/conf.BackendVersion={{.Tag}}' -X 'github.com/Transwarpcom/Cloudreve/v3/pkg/conf.LastCommit={{.ShortCommit}}'
 
     goos:
-      - linux
       - windows
-      - darwin
 
     goarch:
       - amd64
@@ -67,57 +65,3 @@ release:
   target_commitish: '{{ .Commit }}'
   name_template: "{{.Version}}"
 
-dockers:
-  -
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - "--platform=linux/amd64"
-    goos: linux
-    goarch: amd64
-    goamd64: v1
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-amd64"
-  -
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - "--platform=linux/arm64"
-    goos: linux
-    goarch: arm64
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-arm64"
-  -
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - "--platform=linux/arm/v6"
-    goos: linux
-    goarch: arm
-    goarm: '6'
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv6"
-  -
-    dockerfile: Dockerfile
-    use: buildx
-    build_flag_templates:
-      - "--platform=linux/arm/v7"
-    goos: linux
-    goarch: arm
-    goarm: '7'
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv7"
-
-docker_manifests:
-  - name_template: "Transwarpcom/cloudreve:latest"
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-amd64"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-arm64"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv6"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv7"
-  - name_template: "Transwarpcom/cloudreve:{{ .Tag }}"
-    image_templates:
-      - "Transwarpcom/cloudreve:{{ .Tag }}-amd64"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-arm64"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv6"
-      - "Transwarpcom/cloudreve:{{ .Tag }}-armv7"

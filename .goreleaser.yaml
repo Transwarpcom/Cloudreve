@@ -10,6 +10,7 @@ builds:
   -
     env:
       - CGO_ENABLED=0
+      - GITHUB_TOKEN=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
 
     binary: cloudreve
 
